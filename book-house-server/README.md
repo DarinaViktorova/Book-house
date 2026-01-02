@@ -83,7 +83,7 @@ ___
    <br> If you wanna do this, please use this command:
 
 ```md  
-git clone https://github.com/dima666Sik/book-house-server.git
+git clone https://github.com/DarinaViktorova/book-house-server.git
 ```
 
 2. To run this project you will need to install (or use docker images):
