@@ -22,7 +22,6 @@
 >- [Usecase diagram](#usecase-diagram)
 >- [Part of sequences diagram](#part-of-sequences-diagram)
 >- [Patterns](#patterns)
->- [Author Info](#author-info)
 
 ### Project Structure
 
