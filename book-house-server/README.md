@@ -136,10 +136,5 @@ Firstly, it's important to note that we aim to adhere to S.O.L.I.D. principles i
 - Data Access Object Pattern (Usage: implements the necessary data source operations access mechanism). 
 - Inversion of Control Pattern (Usage: delegating object creation higher up the layer, for example, using DI).
 
-### Author Info
-
-- [Linkedin](https://www.linkedin.com/in/dmytro-kohol-333a7a2aa/)
-
-- [GitHub](https://github.com/dima666Sik)
 
 [Back To The Top](#list-of-contents)
