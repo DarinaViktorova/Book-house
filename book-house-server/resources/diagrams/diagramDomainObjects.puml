@@ -1,0 +1,87 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam linetype ortho
+
+class User
+
+class Role {
+    -nameRole;
+}
+
+abstract class Entity{
+    -Long id;
+}
+
+class Account{
+    -String username;
+    -String email;
+    -String password;
+    -Set<Role> setRole;
+}
+
+class Product{
+    -String productName;
+    -String count;
+    -Money price;
+    -...
+}
+
+class Order{
+    -Set<Product> setProduct
+    -...
+}
+
+
+class Card{
+    -String numberCard;
+    -String cardEndDataMonth;
+    -String cardEndDataYear;
+    -String CVC2;
+    -Money amount;
+    -...
+}
+abstract class Money{
+    - Long amount;
+    - Currency currency;
+}
+
+class MoneyCard {
+    - Long limitAmount;
+}
+
+class MoneyCostProduct{
+}
+
+class User{
+    -...
+}
+
+class Admin{
+    -...
+}
+
+class Token{
+    -...
+}
+
+' Relationship between entities '
+Account "1" *-- "*" Role : has
+Account "1" *--- "*" Order : owns
+Account "1" *-- "*" Card : owns
+Account "1" *-- "*" Token : owns
+Order "1" *-- "*" Product : owns
+Card "1" *-- "*" MoneyCard : owns
+Product "1" *-- "*" MoneyCostProduct : owns
+Account "1" *-- "*" User : owns
+Account "1" *-- "*" Admin : owns
+
+Entity<|-- Account
+Entity<|-- Order
+Entity<|-- Product
+Entity<|-- Money
+Entity<|-- Card
+Entity<|-- Token
+
+Money<|-- MoneyCard
+Money<|-- MoneyCostProduct
+@enduml

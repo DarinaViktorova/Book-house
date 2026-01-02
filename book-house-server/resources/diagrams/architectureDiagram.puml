@@ -1,0 +1,182 @@
+@startuml
+skinparam linetype ortho
+
+rectangle "web-browser" {
+    [Client Application]
+}
+
+database "MySql-Auth-1" {
+  frame "db:book_house_auth" {
+  }
+}
+
+database "MySql-Credit-Card-2" {
+  frame "db:book_house_credit_card" {
+  }
+}
+
+database "MySql-Order-3" {
+  frame "db:book_house_order" {
+  }
+}
+database "MySql-Product-4" {
+  frame "db:book_house_product" {
+  }
+}
+
+rectangle "auth-service" {
+    [Controller] as AuthControllerRec
+    [Service] as AuthServiceRec
+    [Repository] as AuthRepositoryRec
+
+    rectangle "filters" {
+      [Client Application] ..> [SecurityConfig] : API calls (HTTP/JSON) handling filters
+    }
+}
+
+rectangle "AuthControllerRec" {
+  [AuthController] <<Controller>>
+  [SecurityConfig] ..> [AuthControllerRec] : API calls (HTTP/JSON)
+}
+
+rectangle "AuthServiceRec" {
+    [AuthService] <<Interface Service>>
+    [AuthServiceImpl] <<Service>>
+
+  [AuthService] <--o [AuthController]
+  [AuthServiceImpl] ..|> [AuthService]
+}
+
+rectangle "AuthRepositoryRec" {
+    [AccountRepository] <<Interface Repository>>
+    [AccountRepositoryImpl] <<Repository>>
+
+  [AccountRepository] <--o [AuthServiceImpl]
+  [AccountRepositoryImpl] ..|> [AccountRepository]
+}
+
+rectangle "product-service" {
+    [Controller] as CoreProductControllerRec
+    [Controller] as CoreProductSortControllerRec
+    [Service] as CoreProductServiceRec
+    [Service] as CoreProductSortServiceRec
+    [Repository] as CoreProductRepositoryRec
+    [Repository] as CoreProductSortRepositoryRec
+}
+
+rectangle "order-service" {
+    [Controller] as CorePurchaseOrderControllerRec
+    [Service] as CoreProductOrderServiceRec
+    [Repository] as CoreProductOrderRepositoryRec
+}
+
+rectangle "CoreProductControllerRec" {
+  [ProductController] <<Controller>>
+  [SecurityConfig] ..> [CoreProductControllerRec] : API calls (HTTP/JSON)
+}
+
+rectangle "CoreProductServiceRec" {
+    [ProductService] <<Interface Service>>
+    [ProductServiceImpl] <<Service>>
+
+  [ProductService] <--o [ProductController]
+  [ProductServiceImpl] ..|> [ProductService]
+}
+
+rectangle "CoreProductRepositoryRec" {
+    [ProductRepository] <<Interface Repository>>
+    [ProductRepositoryImpl] <<Repository>>
+
+  [ProductRepository] <--o [ProductServiceImpl]
+  [ProductRepositoryImpl] ..|> [ProductRepository]
+}
+
+rectangle "CoreProductSortControllerRec" {
+  [ProductSortController] <<Controller>>
+  [SecurityConfig] ..> [CoreProductSortControllerRec] : API calls (HTTP/JSON)
+}
+
+rectangle "CoreProductSortServiceRec" {
+    [ProductSortService] <<Interface Service>>
+    [ProductSortServiceImpl] <<Service>>
+
+  [ProductSortService] <--o [ProductSortController]
+  [ProductSortServiceImpl] ..|> [ProductSortService]
+}
+
+rectangle "CoreProductSortRepositoryRec" {
+    [ProductSortRepository] <<Interface Repository>>
+    [ProductSortRepositoryImpl] <<Repository>>
+
+  [ProductSortRepository] <--o [ProductSortServiceImpl]
+  [ProductSortRepositoryImpl] ..|> [ProductSortRepository]
+}
+
+rectangle "CorePurchaseOrderControllerRec" {
+  [ProductOrderController] <<Controller>>
+}
+
+rectangle "CoreProductOrderServiceRec" {
+    [ProductOrderService] <<Interface Service>>
+    [ProductOrderServiceImpl] <<Service>>
+
+  [ProductOrderServiceImpl] ..> [SecurityConfig] : API calls (HTTP/JSON)
+  [SecurityConfig] ..> [ProductOrderServiceImpl] : API calls (HTTP/JSON)
+
+[CoreProductControllerRec] ..> [CoreProductOrderServiceRec] : API calls (HTTP/JSON)
+  [CoreProductOrderServiceRec] ..> [CoreProductControllerRec] : API calls (HTTP/JSON)
+
+
+  [ProductOrderService] <--o [ProductOrderController]
+  [ProductOrderServiceImpl] ..|> [ProductOrderService]
+}
+
+rectangle "CoreProductOrderRepositoryRec" {
+    [ProductOrderRepository] <<Interface Repository>>
+    [ProductOrderRepositoryImpl] <<Repository>>
+
+  [ProductOrderRepository] <--o [ProductOrderServiceImpl]
+  [ProductOrderRepositoryImpl] ..|> [ProductOrderRepository]
+}
+
+rectangle "creditcard" {
+    [Controller] as CardControllerRec
+    [Service] as CardServiceRec
+    [Repository] as CardRepositoryRec
+}
+
+
+
+rectangle "CardControllerRec" {
+  [CardController] <<Controller>>
+}
+
+rectangle "CardServiceRec" {
+    [CardService] <<Interface Service>>
+    [CardServiceImpl] <<Service>>
+    [CardServiceImpl] ..> [SecurityConfig] : API calls (HTTP/JSON)
+    [SecurityConfig] ..> [CardServiceImpl] : API calls (HTTP/JSON)
+
+[CardServiceImpl] ..> [CoreProductOrderServiceRec] : API calls (HTTP/JSON)
+  [CoreProductOrderServiceRec] ..> [CardServiceImpl] : API calls (HTTP/JSON)
+
+
+  [CardService] <--o [CardController]
+  [CardServiceImpl] ..|> [CardService]
+}
+
+rectangle "CardRepositoryRec" {
+    [CardRepository] <<Interface Repository>>
+    [CardRepositoryImpl] <<Repository>>
+
+  [CardRepository] <--o [CardServiceImpl]
+  [CardRepositoryImpl] ..|> [CardRepository]
+}
+
+[CardRepositoryImpl] --> [db:book_house_credit_card] #Red
+[ProductRepositoryImpl] --> [db:book_house_product] #Blue
+[ProductSortRepositoryImpl] --> [db:book_house_product] #Blue
+[ProductOrderRepositoryImpl] --> [db:book_house_order] #Green
+[AccountRepositoryImpl] --> [db:book_house_auth] #Purple
+
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+     Client -> Server_API_Auth: Authorization Request
+     Server_API_Auth -> Server_API_Auth : Check validation data
+     Client <-[#red]- Server_API_Auth: bad request\n (Validation not successful)
+     Server_API_Auth -> Server_API_Auth : Handling Server data from client
+
+     database DB as DB
+         note left : Transaction
+          activate Server_API_Auth
+     Server_API_Auth -> DB: CRUD operation
+     Server_API_Auth <-- DB: Get handling result
+    note left : End Transaction
+     deactivate Server_API_Auth
+     Client <-- Server_API_Auth: Authorization Response
+@enduml

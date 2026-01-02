@@ -1,0 +1,7 @@
+# Configuration (Data source)
+hibernate:
+  driver_class:
+  connection:
+    url: jdbc:mysql://localhost:3310/test_book_house_credit_card
+    username: root
+    password: root

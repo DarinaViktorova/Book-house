@@ -1,0 +1,45 @@
+@startuml
+skinparam linetype ortho
+
+package "auth-service" {
+    interface AuthService {
+        +void ordinalRegistration(RegistrationDTO accountDTORequest);
+        +void adminRegistration(RegistrationDTO accountDTORequest);
+        +Account authorization(AuthorizationDTO authorizationDTORequest);
+        +AccountDto getAccountByEmail(String email);
+    }
+}
+
+
+package "product-service" {
+     interface ProductService {
+        +void createProduct(ProductDTO productDTORequest);
+        +void updateProduct(ProductDTO productDTORequest);
+        +void deleteProduct(ProductDTO productDTORequest);
+        +ProductDTO readProduct(ProductDTO productDTORequest);
+        +ListProductDTO getAllProducts();
+        +void saveAllProducts(ListProductDTO listProductDTO);
+     }
+
+     interface ProductSortService {
+        +ResponseEntity<List<ProductDTO>> getAllProductsByAscendingOrder();
+        +ResponseEntity<List<ProductDTO>> getAllProductsByDescendingOrder();
+     }
+}
+
+
+package "order-service"{
+     interface ProductOrderService {
+        +void createListOrder(OrdersDTO ordersDTO);
+     }
+}
+
+package "credit-card-service"{
+     interface ProductOrderService {
+           +CardDTO readCard(CardDTO cardDTO);
+           +void createCard(CardDTO cardDTO);
+           +CardDTO readCardByAccountId(Long accountId);
+           +void updateCard(CardDTO cardDTO);
+     }
+}
+@enduml

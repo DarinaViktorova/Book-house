@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+    'Authorization
+     Client -> Server_API_Core: Order Request
+     Server_API_Core -> Server_API_Core : Check user access\n rights for doing crud\n operations
+      Client <-[#red]- Server_API_Core: bad request\n (User have not needed rights)
+     Server_API_Core -> Server_API_Core : Handling Server data from client
+
+     database DB as DB
+     note left : Transaction
+     activate Server_API_Core
+     Server_API_Core -> DB:Reduce money from the user's card
+     Server_API_Core <-- DB:Get response
+     Client <-[#red]- Server_API_Core: transaction unsuccessful,\n so all transactions rollback
+     Server_API_Core -> DB:Reduce count Products on site
+     Server_API_Core <-- DB:Get response
+     Server_API_Core -> DB:Add order to user
+     Server_API_Core <-- DB:Get response
+
+    note left : End Transaction
+     deactivate Server_API_Core
+     Client <-- Server_API_Core: Order Response
+
+@enduml

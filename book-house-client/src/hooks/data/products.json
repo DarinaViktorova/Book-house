@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "title": "The Lost Treasure of Atlantis",
+    "category": "Adventure",
+    "price": 100,
+    "description": "Embark on an epic adventure to uncover the mysterious lost treasure of Atlantis. Join a fearless team of explorers as they navigate treacherous waters, ancient ruins, and cunning traps in search of untold riches."
+  },
+  {
+    "id": 2,
+    "title": "Journey Through the Enchanted Forest",
+    "category": "Adventure",
+    "price": 120,
+    "description": "Venture into the heart of the enchanted forest, where magic and danger await at every turn. Join a courageous band of travelers as they encounter mystical creatures, solve ancient riddles, and confront dark forces threatening the land."
+  },
+  {
+    "id": 3,
+    "title": "The Haunting of Raven Manor",
+    "category": "Horror",
+    "price": 80,
+    "description": "Prepare to be terrified as you enter the haunted halls of Raven Manor. Dare to explore its dark secrets and sinister history, but beware - for restless spirits and malevolent entities lurk in the shadows, eager to claim unsuspecting souls."
+  },
+  {
+    "id": 4,
+    "title": "Whispers in the Night",
+    "category": "Horror",
+    "price": 90,
+    "description": "Listen closely to the whispers in the night, for they carry the secrets of the damned. Descend into madness as you uncover the chilling truth behind a series of inexplicable disappearances, haunted by the specter of your own impending doom."
+  },
+  {
+    "id": 5,
+    "title": "Realm of the Dragon King",
+    "category": "Fantasy",
+    "price": 150,
+    "description": "Enter the mythical realm of the Dragon King, where ancient magic and legendary creatures reign supreme. Embark on a quest to overthrow tyranny and restore peace to the land, forging alliances and mastering the elements along the way."
+  },
+  {
+    "id": 6,
+    "title": "The Sword of Destiny",
+    "category": "Fantasy",
+    "price": 170,
+    "description": "Claim your destiny and wield the legendary Sword of Destiny, a weapon of immense power and ancient origins. Journey across perilous lands, confront fearsome foes, and unlock the sword's true potential to fulfill your heroic destiny."
+  },
+  {
+    "id": 7,
+    "title": "Echoes of Eternity",
+    "category": "Fantasy",
+    "price": 200,
+    "description": "Echoes of Eternity resonate throughout the realms, calling forth heroes to face the ultimate challenge. Embark on an epic quest to confront the dark forces threatening existence itself, guided by prophecy and fueled by courage and determination."
+  }
+]

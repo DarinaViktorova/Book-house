@@ -1,0 +1,7 @@
+# Configuration (Data source)
+hibernate:
+  driver_class:
+  connection:
+    url: jdbc:mysql://localhost:3307/test_book_house_auth
+    username: root
+    password: root

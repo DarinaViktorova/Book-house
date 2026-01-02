@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+     Client -> Server_API_Core: Product Request
+     Server_API_Core -> Server_API_Core : Check user access\n rights for doing crud\n operations
+      Client <-[#red]- Server_API_Core: bad request\n (User have not needed rights)
+     Server_API_Core -> Server_API_Core : Handling Server data from client
+
+     database DB as DB
+          note left : Transaction
+          activate Server_API_Core
+     Server_API_Core -> DB: CRUD operations
+     Server_API_Core <-- DB: Get handling result
+    note left : End Transaction
+     deactivate Server_API_Core
+     Client <-- Server_API_Core: Product Response
+@enduml

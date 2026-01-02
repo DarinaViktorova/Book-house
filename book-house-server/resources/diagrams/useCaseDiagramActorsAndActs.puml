@@ -1,0 +1,58 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+left to right direction
+actor User
+actor Guest
+actor Admin
+
+package order-service{
+    (Create order) as (COP)
+}
+
+package product-service{
+    (Check products) as (CP)
+    (Order products) as (OP)
+    (Create products) as (CrP)
+    (Delete products) as (DP)
+    (Edit products) as (EP)
+    (Sort products `Asc-Desc`) as (SP)
+}
+
+package auth-service{
+    (Authorization) as (Author)
+    (Registration) as (Reg)
+    (Create Admins) as (CA)
+    (Authentication) as (Authen)
+    (Logout) as (L)
+}
+
+package credit-card-service{
+    (Create card) as (CC)
+    (Get card) as (GC)
+}
+
+
+Guest ---> (CP)
+Guest --> (Reg)
+Guest --> (Author)
+Guest -> (SP)
+
+Admin ----> (CP)
+Admin --> (CA)
+Admin ---> (CrP)
+Admin ----> (DP)
+Admin --> (Authen)
+Admin --> (EP)
+Admin --> (SP)
+Admin -> (L)
+
+User --> (SP)
+User ---> (L)
+User ---> (CC)
+User ---> (GC)
+User --> (CP)
+User -> (COP)
+User ---> (OP)
+User ---> (Authen)
+@enduml

@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: auth-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://localhost:3308/book_house_auth"
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+server:
+  port: 8080
+
+jwt:
+  secret:
+    key: "e103349e2e1f32452183435f31367d73846e81cb212fb26ce1bc45e3be75ead5"
+  token:
+    expiration: 10000
+
+client:
+  url: "http://localhost:3000"
